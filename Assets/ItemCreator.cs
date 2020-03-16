@@ -10,21 +10,20 @@ public class ItemCreator : MonoBehaviour
     public GameObject coinPrefab;
     public GameObject conePrefab;
     private float posRange = 3.4f;
-    private float uTime;
+    float Z;
 
     // Use this for initialization
     void Start()
     {
         this.unitychan = GameObject.Find("unitychan");
         this.difference = unitychan.transform.position.z - this.transform.position.z;
-        uTime = 0f;
-    }
+        Z = this.transform.position.z;
+}
     // Update is called once per frame
     void Update()
     {
-        uTime += Time.deltaTime;
         this.transform.position = new Vector3(0, this.transform.position.y, this.unitychan.transform.position.z - difference);
-        if (uTime > 1 && this.transform.position.z < 120)
+        if (this.transform.position.z - Z > 15 && this.transform.position.z < 120)
         {
             int num = Random.Range(1, 11);
             if (num <= 2)
@@ -60,7 +59,7 @@ public class ItemCreator : MonoBehaviour
                     }
                 }
             }
-            uTime = 0f;
+            Z = this.transform.position.z;
         }
     }
 }
